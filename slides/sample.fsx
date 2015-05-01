@@ -11,7 +11,7 @@
 
 - Generates [reveal.js](http://lab.hakim.se/reveal-js/#/) presentation from [markdown](http://daringfireball.net/projects/markdown/)
 - Utilizes [FSharp.Formatting](https://github.com/tpetricek/FSharp.Formatting) for markdown parsing
-
+- [Markdown version](index.html) of these slides
 ***
 
 ### Reveal.js

@@ -12,3 +12,6 @@ if errorlevel 1 (
 )
 
 packages\FAKE\tools\FAKE.exe build.fsx %*
+if errorlevel 1 (
+  exit /b %errorlevel%
+)

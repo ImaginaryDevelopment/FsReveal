@@ -10,7 +10,7 @@
 
 - Generates [reveal.js](http://lab.hakim.se/reveal-js/#/) presentation from [markdown](http://daringfireball.net/projects/markdown/)
 - Utilizes [FSharp.Formatting](https://github.com/tpetricek/FSharp.Formatting) for markdown parsing
-
+- [Fsx Version](sample.html) of these slides
 ![FsReveal](images/logo.png)
 
 ***
