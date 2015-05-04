@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>FsReveal</title>
-    <meta name="description" content="Introduction to FsReveal">
-    <meta name="author" content="Karlkim Suwanmongkol">
+    <title>F# intro via FsReveal</title>
+    <meta name="description" content="Introduction to F# with help from FsReveal">
+    <meta name="author" content="Brandon D'Imperio">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,7 +14,7 @@
     <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
     <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
     <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
     <link type="text/css" rel="stylesheet" href="css/custom.css" />
@@ -37,57 +37,58 @@
 </head>
 <body>
     <div class="reveal">
-        <div class="tip" id="fs1">module Seq<br /><br />from Microsoft.FSharp.Collections</div>
-<div class="tip" id="fs2">val iterDump&lt;&#39;a&gt; : (seq&lt;obj&gt; -&gt; unit)<br /><br />Full name: index.Seq.iterDump</div>
-<div class="tip" id="fs3">val iter : action:(&#39;T -&gt; unit) -&gt; source:seq&lt;&#39;T&gt; -&gt; unit<br /><br />Full name: Microsoft.FSharp.Collections.Seq.iter</div>
-<div class="tip" id="fs4">val i : obj</div>
-<div class="tip" id="fs5">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
-<div class="tip" id="fs6">val filter : ((&#39;a -&gt; bool) -&gt; &#39;a list -&gt; &#39;a list)</div>
-<div class="tip" id="fs7">val f : (&#39;a -&gt; bool)</div>
-<div class="tip" id="fs8">val l : &#39;a list</div>
-<div class="tip" id="fs9">val filterUtil : (&#39;a list -&gt; &#39;a list -&gt; &#39;a list)</div>
-<div class="tip" id="fs10">val acc : &#39;a list</div>
-<div class="tip" id="fs11">val x : &#39;a</div>
-<div class="tip" id="fs12">val xs : &#39;a list</div>
+        <div class="tip" id="fs1">val c : int<br /><br />Full name: Index.c</div>
+<div class="tip" id="fs2">val x : int<br /><br />Full name: Index.Assignment.x</div>
+<div class="tip" id="fs3">val mutable y : int<br /><br />Full name: Index.Assignment.y</div>
+<div class="tip" id="fs4">val z : bool<br /><br />Full name: Index.Assignment.z</div>
+<div class="tip" id="fs5">val x : int<br /><br />Full name: Index.Casting.x</div>
+<div class="tip" id="fs6">val y : obj<br /><br />Full name: Index.Casting.y</div>
+<div class="tip" id="fs7">type obj = System.Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
+<div class="tip" id="fs8">val z : int<br /><br />Full name: Index.Casting.z</div>
+<div class="tip" id="fs9">Multiple items<br />val int : value:&#39;T -&gt; int (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.int<br /><br />--------------------<br />type int = int32<br /><br />Full name: Microsoft.FSharp.Core.int<br /><br />--------------------<br />type int&lt;&#39;Measure&gt; = int<br /><br />Full name: Microsoft.FSharp.Core.int&lt;_&gt;</div>
+<div class="tip" id="fs10">val a : obj<br /><br />Full name: Index.Casting.a</div>
+<div class="tip" id="fs11">val b : int<br /><br />Full name: Index.Casting.b</div>
+<div class="tip" id="fs12">val x : obj<br /><br />Full name: Index.Casting2.x</div>
+<div class="tip" id="fs13">val a : int</div>
+<div class="tip" id="fs14">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
+<div class="tip" id="fs15">val foo : obj</div>
+<div class="tip" id="fs16">module Seq<br /><br />from Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs17">val a : System.Collections.Generic.List&lt;int&gt;<br /><br />Full name: Index.Seq.a</div>
+<div class="tip" id="fs18">namespace System</div>
+<div class="tip" id="fs19">namespace System.Collections</div>
+<div class="tip" id="fs20">namespace System.Collections.Generic</div>
+<div class="tip" id="fs21">Multiple items<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;new : unit -&gt; List&lt;&#39;T&gt; + 2 overloads<br />&#160;&#160;member Add : item:&#39;T -&gt; unit<br />&#160;&#160;member AddRange : collection:IEnumerable&lt;&#39;T&gt; -&gt; unit<br />&#160;&#160;member AsReadOnly : unit -&gt; ReadOnlyCollection&lt;&#39;T&gt;<br />&#160;&#160;member BinarySearch : item:&#39;T -&gt; int + 2 overloads<br />&#160;&#160;member Capacity : int with get, set<br />&#160;&#160;member Clear : unit -&gt; unit<br />&#160;&#160;member Contains : item:&#39;T -&gt; bool<br />&#160;&#160;member ConvertAll&lt;&#39;TOutput&gt; : converter:Converter&lt;&#39;T, &#39;TOutput&gt; -&gt; List&lt;&#39;TOutput&gt;<br />&#160;&#160;member CopyTo : array:&#39;T[] -&gt; unit + 2 overloads<br />&#160;&#160;...<br />&#160;&#160;nested type Enumerator<br /><br />Full name: System.Collections.Generic.List&lt;_&gt;<br /><br />--------------------<br />System.Collections.Generic.List() : unit<br />System.Collections.Generic.List(capacity: int) : unit<br />System.Collections.Generic.List(collection: System.Collections.Generic.IEnumerable&lt;&#39;T&gt;) : unit</div>
+<div class="tip" id="fs22">val a&#39; : &#39;a []<br /><br />Full name: Index.Seq.a&#39;</div>
+<div class="tip" id="fs23">val a&#39;&#39; : int []<br /><br />Full name: Index.Seq.a&#39;&#39;</div>
+<div class="tip" id="fs24">val b : &#39;a list<br /><br />Full name: Index.Seq.b</div>
+<div class="tip" id="fs25">val b&#39; : int list<br /><br />Full name: Index.Seq.b&#39;</div>
+<div class="tip" id="fs26">val iterDump&lt;&#39;a&gt; : (seq&lt;obj&gt; -&gt; unit)<br /><br />Full name: Index.Seq.iterDump</div>
+<div class="tip" id="fs27">val iter : action:(&#39;T -&gt; unit) -&gt; source:seq&lt;&#39;T&gt; -&gt; unit<br /><br />Full name: Microsoft.FSharp.Collections.Seq.iter</div>
+<div class="tip" id="fs28">val i : obj</div>
+<div class="tip" id="fs29">Multiple items<br />type MeasureAttribute =<br />&#160;&#160;inherit Attribute<br />&#160;&#160;new : unit -&gt; MeasureAttribute<br /><br />Full name: Microsoft.FSharp.Core.MeasureAttribute<br /><br />--------------------<br />new : unit -&gt; MeasureAttribute</div>
+<div class="tip" id="fs30">[&lt;Measure&gt;]<br />type sqft<br /><br />Full name: Index.sqft</div>
+<div class="tip" id="fs31">[&lt;Measure&gt;]<br />type dollar<br /><br />Full name: Index.dollar</div>
+<div class="tip" id="fs32">val sizes : int&lt;sqft&gt; []<br /><br />Full name: Index.sizes</div>
+<div class="tip" id="fs33">val prices : int&lt;dollar&gt; []<br /><br />Full name: Index.prices</div>
+<div class="tip" id="fs34">val f1 : x:int -&gt; string<br /><br />Full name: Index.f1</div>
+<div class="tip" id="fs35">val x : int</div>
+<div class="tip" id="fs36">val f2 : lower:&#39;a -&gt; x:&#39;a -&gt; upper:&#39;a -&gt; string (requires comparison)<br /><br />Full name: Index.f2</div>
+<div class="tip" id="fs37">val lower : &#39;a (requires comparison)</div>
+<div class="tip" id="fs38">val x : &#39;a (requires comparison)</div>
+<div class="tip" id="fs39">val upper : &#39;a (requires comparison)</div>
 
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section >
 
-<h3>What is FsReveal?</h3>
+<h3>Intro to F#</h3>
+
+<h4>(for C#ers)</h4>
 
 <ul>
-<li>Generates <a href="http://lab.hakim.se/reveal-js/#/">reveal.js</a> presentation from <a href="http://daringfireball.net/projects/markdown/">markdown</a></li>
-<li>Utilizes <a href="https://github.com/tpetricek/FSharp.Formatting">FSharp.Formatting</a> for markdown parsing</li>
-<li><a href="sample.html">Fsx Version</a> of these slides
-<img src="images/logo.png" alt="FsReveal" /></li>
-</ul>
-
-</section>
-
-<section >
-
-<h3>Reveal.js</h3>
-
-<ul>
-<li>A framework for easily creating beautiful presentations using HTML.</li>
-</ul>
-
-<blockquote>
-  <p><strong>Atwood's Law</strong>: any application that can be written in JavaScript, will eventually be written in JavaScript.</p>
-</blockquote>
-
-</section>
-
-<section >
-
-<h3>FSharp.Formatting</h3>
-
-<ul>
-<li>F# tools for generating documentation (Markdown processor and F# code formatter).</li>
-<li>It parses markdown and F# script file and generates HTML or PDF.</li>
-<li>Code syntax highlighting support.</li>
-<li>It also evaluates your F# code and produce tooltips.</li>
+<li>by Brandon D'Imperio</li>
+<li><a href="http://imaginarydevelopment.blogspot.com">imaginarydevelopment.blogspot.com</a></li>
+<li><a href="http://www.twitter.com/MaslowJax">@MaslowJax</a></li>
 </ul>
 
 </section>
@@ -96,28 +97,30 @@
 
 <section >
 
-<h3>Syntax Highlighting</h3>
+<h3>Syntax</h3>
 
 <h4>F# (with tooltips)</h4>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l">1: </span>
-<span class="l">2: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="k">module</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="t">Seq</span> <span class="o">=</span>
-    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="f">iterDump</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="t">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="f">iter</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="i">i</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="f">printfn</span> <span class="s">&quot;</span><span class="pf">%A</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">i</span>)
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">c</span> <span class="o">=</span> <span class="n">1</span> <span class="o">+</span> <span class="n">5</span>
 </pre>
 </td>
 </tr>
 </table>
 
+<p><code>c</code> is evaluated for you</p>
+
+<table class="pre"><tr><td><pre><code>6</code></pre></td></tr></table>
+
 </section>
 
-<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="night" title="FsReveal" transition="default">
+<section author="Brandon D'Imperio" description="Introduction to F# with help from FsReveal" theme="sky" title="F# intro via FsReveal" transition="default">
 
-<h4>cons operator</h4>
+<h4>Assignment</h4>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l">1: </span>
@@ -130,38 +133,50 @@
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="f">filter</span> <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="f">f</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">l</span> <span class="o">=</span> 
-    <span class="k">let</span> <span class="k">rec</span> <span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="f">filterUtil</span> <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="i">acc</span> <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="i">l</span> <span class="o">=</span>
-        <span class="k">match</span> <span onmouseout="hideTip(event, 'fs8', 14)" onmouseover="showTip(event, 'fs8', 14)" class="i">l</span> <span class="k">with</span> 
-        | [] <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="i">acc</span>
-        | <span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="i">x</span><span class="o">::</span><span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="i">xs</span> <span class="k">when</span> <span onmouseout="hideTip(event, 'fs7', 18)" onmouseover="showTip(event, 'fs7', 18)" class="f">f</span> <span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="i">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs9', 20)" onmouseover="showTip(event, 'fs9', 20)" class="f">filterUtil</span> (<span onmouseout="hideTip(event, 'fs10', 21)" onmouseover="showTip(event, 'fs10', 21)" class="i">acc</span> <span class="o">@</span> [<span onmouseout="hideTip(event, 'fs11', 22)" onmouseover="showTip(event, 'fs11', 22)" class="i">x</span>]) <span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="i">xs</span>
-        | <span onmouseout="hideTip(event, 'fs11', 24)" onmouseover="showTip(event, 'fs11', 24)" class="i">x</span><span class="o">::</span><span onmouseout="hideTip(event, 'fs12', 25)" onmouseover="showTip(event, 'fs12', 25)" class="i">xs</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs9', 26)" onmouseover="showTip(event, 'fs9', 26)" class="f">filterUtil</span> <span onmouseout="hideTip(event, 'fs10', 27)" onmouseover="showTip(event, 'fs10', 27)" class="i">acc</span> <span onmouseout="hideTip(event, 'fs12', 28)" onmouseover="showTip(event, 'fs12', 28)" class="i">xs</span>
-    <span onmouseout="hideTip(event, 'fs9', 29)" onmouseover="showTip(event, 'fs9', 29)" class="f">filterUtil</span> [] <span onmouseout="hideTip(event, 'fs8', 30)" onmouseover="showTip(event, 'fs8', 30)" class="i">l</span>
+<span class="k">module</span> <span class="t">Assignment</span> <span class="o">=</span> 
+    <span class="c">// let is a binding not an assignment</span>
+    <span class="c">// = is a binding or comparison not an assignment</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">x</span> <span class="o">=</span> <span class="n">5</span> <span class="c">// not mutable </span>
+    <span class="k">let</span> <span class="k">mutable</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="v">y</span> <span class="o">=</span> <span class="n">5</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">z</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="i">x</span> <span class="o">=</span> <span class="n">6</span> <span class="c">// comparison</span>
+    <span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="v">y</span> <span class="o">&lt;-</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="v">y</span> <span class="o">+</span> <span class="n">1</span>
 </pre>
 </td>
 </tr>
 </table>
 
-</section>
+<p><code>z</code> evaluates to</p>
+
+<table class="pre"><tr><td><pre><code>false</code></pre></td></tr></table>
 
 </section>
 
-<section >
+<section author="Brandon D'Imperio" description="Introduction to F# with help from FsReveal" theme="sky" title="F# intro via FsReveal" transition="default">
 
-<section >
-
-<h3>Languages</h3>
+<h4>Casting</h4>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="o">-</span> <span class="i">C#</span>
-<span class="o">-</span> <span class="i">Javascript</span>
-<span class="o">-</span> <span class="i">Sql</span>
+<span class="k">module</span> <span class="t">Casting</span> <span class="o">=</span> 
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="i">x</span> <span class="o">=</span> <span class="n">5</span>
+    <span class="c">// upcast (always succeeds if it compiles)</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="i">y</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="t">obj</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="i">x</span> <span class="o">:&gt;</span> <span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="t">obj</span> 
+    <span class="c">// downcast when the type isn&#39;t inferrable (? mark notes the possibility of failure)</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="i">z</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="t">int</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="i">y</span> <span class="o">:?&gt;</span> <span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="t">int</span> 
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="i">a</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs7', 18)" onmouseover="showTip(event, 'fs7', 18)" class="t">obj</span> <span class="o">=</span> <span class="k">upcast</span> <span onmouseout="hideTip(event, 'fs5', 19)" onmouseover="showTip(event, 'fs5', 19)" class="i">x</span> <span class="c">// when the type is inferrable</span>
+    <span class="c">// when the type is inferrable (still could fail)</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="i">b</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs9', 21)" onmouseover="showTip(event, 'fs9', 21)" class="t">int</span> <span class="o">=</span> <span class="k">downcast</span> <span onmouseout="hideTip(event, 'fs6', 22)" onmouseover="showTip(event, 'fs6', 22)" class="i">y</span> 
 </pre>
 </td>
 </tr>
@@ -169,58 +184,28 @@
 
 </section>
 
-<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="night" title="FsReveal" transition="default">
+<section author="Brandon D'Imperio" description="Introduction to F# with help from FsReveal" theme="sky" title="F# intro via FsReveal" transition="default">
 
-<h4>C#</h4>
+<h4>Casting 2</h4>
 
-<table class="pre"><tr><td><pre lang="cs"><span class="k">using</span> System;
-
-<span class="k">class</span> Program
-{
-    <span class="k">static</span> <span class="k">void</span> Main()
-    {
-        Console.WriteLine(<span class="s">"Hello, world!"</span>);
-    }
-}
-</pre></td></tr></table>
-
-</section>
-
-<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="night" title="FsReveal" transition="default">
-
-<h4>JavaScript</h4>
-
-<table class="pre"><tr><td><pre lang="js"><span class="k">function</span> copyWithEvaluation(iElem, elem) {
-    <span class="k">return</span> <span class="k">function</span> (obj) {
-        <span class="k">var</span> newObj <span class="o">=</span> {};
-        <span class="k">for</span> (<span class="k">var</span> p <span class="k">in</span> obj) {
-            <span class="k">var</span> v <span class="o">=</span> obj[p];
-            <span class="k">if</span> (<span class="k">typeof</span> v <span class="o">=</span><span class="o">=</span><span class="o">=</span> <span class="s">"function"</span>) {
-                v <span class="o">=</span> v(iElem, elem);
-            }
-            newObj[p] <span class="o">=</span> v;
-        }
-        <span class="k">if</span> (!newObj.exactTiming) {
-            newObj.delay <span class="o">+</span><span class="o">=</span> exports._libraryDelay;
-        }
-        <span class="k">return</span> newObj;
-    };
-}
-</pre></td></tr></table>
-
-</section>
-
-<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="night" title="FsReveal" transition="default">
-
-<h3>SQL</h3>
-
-<table class="pre"><tr><td><pre lang="sql"><span class="k">select</span> *
-<span class="k">from</span>
-(<span class="k">select</span> 1 <span class="k">as</span> Id <span class="k">union</span> <span class="k">all</span> <span class="k">select</span> 2 <span class="k">union</span> <span class="k">all</span> <span class="k">select</span> 3) <span class="k">as</span> X
-<span class="k">where</span> Id <span class="k">in</span> (@Ids1, @Ids2, @Ids3)
-</pre></td></tr></table>
-
-<p><em>sql from <a href="https://code.google.com/p/dapper-dot-net/">Dapper</a></em></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">module</span> <span class="t">Casting2</span> <span class="o">=</span> 
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="i">x</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs7', 24)" onmouseover="showTip(event, 'fs7', 24)" class="t">obj</span> <span class="o">=</span> <span class="k">upcast</span> <span class="n">2</span>
+    <span class="k">match</span> <span onmouseout="hideTip(event, 'fs12', 25)" onmouseover="showTip(event, 'fs12', 25)" class="i">x</span> <span class="k">with</span>
+    | <span class="o">:?</span> <span onmouseout="hideTip(event, 'fs9', 26)" onmouseover="showTip(event, 'fs9', 26)" class="t">int</span> <span class="k">as</span> <span onmouseout="hideTip(event, 'fs13', 27)" onmouseover="showTip(event, 'fs13', 27)" class="i">a</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs14', 28)" onmouseover="showTip(event, 'fs14', 28)" class="f">printfn</span> <span class="s">&quot;int value: </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs13', 29)" onmouseover="showTip(event, 'fs13', 29)" class="i">a</span>
+    | _ <span class="k">as</span> <span onmouseout="hideTip(event, 'fs15', 30)" onmouseover="showTip(event, 'fs15', 30)" class="i">foo</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs14', 31)" onmouseover="showTip(event, 'fs14', 31)" class="f">printfn</span> <span class="s">&quot;</span><span class="pf">%O</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs15', 32)" onmouseover="showTip(event, 'fs15', 32)" class="i">foo</span>
+</pre>
+</td>
+</tr>
+</table>
 
 </section>
 
@@ -228,17 +213,108 @@
 
 <section >
 
-<h3>The Reality of a Developer's Life</h3>
+<h3>Collections</h3>
 
-<p><strong>When I show my boss that I've fixed a bug:</strong></p>
+<h4>Sequences</h4>
 
-<p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-07.gif" alt="When I show my boss that I've fixed a bug" /></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">module</span> <span onmouseout="hideTip(event, 'fs16', 33)" onmouseover="showTip(event, 'fs16', 33)" class="t">Seq</span> <span class="o">=</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 34)" onmouseover="showTip(event, 'fs17', 34)" class="i">a</span> <span class="o">=</span> <span class="k">new</span> <span onmouseout="hideTip(event, 'fs18', 35)" onmouseover="showTip(event, 'fs18', 35)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 36)" onmouseover="showTip(event, 'fs19', 36)" class="i">Collections</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs20', 37)" onmouseover="showTip(event, 'fs20', 37)" class="i">Generic</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs21', 38)" onmouseover="showTip(event, 'fs21', 38)" class="t">List</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 39)" onmouseover="showTip(event, 'fs9', 39)" class="t">int</span><span class="o">&gt;</span>()
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 40)" onmouseover="showTip(event, 'fs22', 40)" class="i">a&#39;</span> <span class="o">=</span> [| |] <span class="c">// F# (immutable)</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 41)" onmouseover="showTip(event, 'fs23', 41)" class="i">a&#39;&#39;</span> <span class="o">=</span> [| <span class="n">1..</span><span class="n">10</span> |]
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs24', 42)" onmouseover="showTip(event, 'fs24', 42)" class="i">b</span> <span class="o">=</span> []
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs25', 43)" onmouseover="showTip(event, 'fs25', 43)" class="i">b&#39;</span> <span class="o">=</span> [ <span class="n">1..</span><span class="n">10</span> ]
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 44)" onmouseover="showTip(event, 'fs26', 44)" class="f">iterDump</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 45)" onmouseover="showTip(event, 'fs16', 45)" class="t">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 46)" onmouseover="showTip(event, 'fs27', 46)" class="f">iter</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs28', 47)" onmouseover="showTip(event, 'fs28', 47)" class="i">i</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs14', 48)" onmouseover="showTip(event, 'fs14', 48)" class="f">printfn</span> <span class="s">&quot;</span><span class="pf">%A</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs28', 49)" onmouseover="showTip(event, 'fs28', 49)" class="i">i</span>)
+</pre>
+</td>
+</tr>
+</table>
 
-<p><strong>When your regular expression returns what you expect:</strong></p>
+</section>
 
-<p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-03.gif" alt="When your regular expression returns what you expect" /></p>
+<section >
 
-<p><em>from <a href="http://server.dzone.com/articles/reality-developers-life-gifs">The Reality of a Developer's Life - in GIFs, Of Course</a></em></p>
+<h3>Units of Measure</h3>
+
+<h4></h4>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+[&lt;<span onmouseout="hideTip(event, 'fs29', 50)" onmouseover="showTip(event, 'fs29', 50)" class="t">Measure</span>&gt;] <span class="k">type</span> <span onmouseout="hideTip(event, 'fs30', 51)" onmouseover="showTip(event, 'fs30', 51)" class="t">sqft</span>
+[&lt;<span onmouseout="hideTip(event, 'fs29', 52)" onmouseover="showTip(event, 'fs29', 52)" class="t">Measure</span>&gt;] <span class="k">type</span> <span onmouseout="hideTip(event, 'fs31', 53)" onmouseover="showTip(event, 'fs31', 53)" class="t">dollar</span>
+<span class="c">// array</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 54)" onmouseover="showTip(event, 'fs32', 54)" class="i">sizes</span> <span class="o">=</span> [|<span class="n">1700</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs30', 55)" onmouseover="showTip(event, 'fs30', 55)" class="t">sqft</span><span class="o">&gt;</span>;<span class="n">2100</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs30', 56)" onmouseover="showTip(event, 'fs30', 56)" class="t">sqft</span><span class="o">&gt;</span>;<span class="n">1900</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs30', 57)" onmouseover="showTip(event, 'fs30', 57)" class="t">sqft</span><span class="o">&gt;</span>;<span class="n">1300</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs30', 58)" onmouseover="showTip(event, 'fs30', 58)" class="t">sqft</span>&gt;|]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 59)" onmouseover="showTip(event, 'fs33', 59)" class="i">prices</span> <span class="o">=</span> 
+    [|
+    <span class="n">53000</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs31', 60)" onmouseover="showTip(event, 'fs31', 60)" class="t">dollar</span><span class="o">&gt;</span>
+    <span class="n">44000</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs31', 61)" onmouseover="showTip(event, 'fs31', 61)" class="t">dollar</span><span class="o">&gt;</span>
+    <span class="n">59000</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs31', 62)" onmouseover="showTip(event, 'fs31', 62)" class="t">dollar</span><span class="o">&gt;</span>
+    <span class="n">82000</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs31', 63)" onmouseover="showTip(event, 'fs31', 63)" class="t">dollar</span><span class="o">&gt;</span>
+    |] 
+</pre>
+</td>
+</tr>
+</table>
+
+<h4><code>prices.[0]/sizes.[0]</code></h4>
+
+<table class="pre"><tr><td><pre><code>31</code></pre></td></tr></table>
+
+</section>
+
+<section >
+
+<h3>Flow Control</h3>
+
+<h4>if</h4>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 64)" onmouseover="showTip(event, 'fs34', 64)" class="f">f1</span> <span onmouseout="hideTip(event, 'fs35', 65)" onmouseover="showTip(event, 'fs35', 65)" class="i">x</span> <span class="o">=</span> <span class="k">if</span> <span onmouseout="hideTip(event, 'fs35', 66)" onmouseover="showTip(event, 'fs35', 66)" class="i">x</span> <span class="o">&lt;</span> <span class="n">5</span> <span class="k">then</span> <span class="s">&quot;less than&quot;</span> <span class="k">else</span> <span class="s">&quot;not less than&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 67)" onmouseover="showTip(event, 'fs36', 67)" class="f">f2</span> <span onmouseout="hideTip(event, 'fs37', 68)" onmouseover="showTip(event, 'fs37', 68)" class="i">lower</span> <span onmouseout="hideTip(event, 'fs38', 69)" onmouseover="showTip(event, 'fs38', 69)" class="i">x</span> <span onmouseout="hideTip(event, 'fs39', 70)" onmouseover="showTip(event, 'fs39', 70)" class="i">upper</span> <span class="o">=</span> 
+    <span class="k">if</span> <span onmouseout="hideTip(event, 'fs38', 71)" onmouseover="showTip(event, 'fs38', 71)" class="i">x</span> <span class="o">&lt;</span> <span onmouseout="hideTip(event, 'fs37', 72)" onmouseover="showTip(event, 'fs37', 72)" class="i">lower</span> <span class="k">then</span> 
+        <span class="s">&quot;less than&quot;</span> 
+    <span class="k">else</span> <span class="k">if</span> <span onmouseout="hideTip(event, 'fs38', 73)" onmouseover="showTip(event, 'fs38', 73)" class="i">x</span> <span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs39', 74)" onmouseover="showTip(event, 'fs39', 74)" class="i">upper</span> <span class="k">then</span>
+        <span class="s">&quot;greater than&quot;</span> 
+    <span class="k">else</span> <span class="s">&quot;between&quot;</span>
+</pre>
+</td>
+</tr>
+</table>
+
+<p><em></em></p>
 
 </section>
 
