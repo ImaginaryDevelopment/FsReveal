@@ -192,15 +192,6 @@ module SequenceExamples =
       join j in items on i equals j
       select new {i,j};
 
-
-
-    class Program
-    {
-        static void Main()
-        {
-            Console.WriteLine("Hello, world!");
-        }
-    }
 ---
 #### Linq
 *)
