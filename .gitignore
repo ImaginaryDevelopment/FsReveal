@@ -182,3 +182,6 @@ release.cmd
 *.bak
 *.orig
 docs
+.fake/
+FSharp.Formatting.svclog
+_NCrunch*

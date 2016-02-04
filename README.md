@@ -9,6 +9,7 @@ and brings F# to the [reveal.js][revealjs] web presentation framework.
 ## Features
 
 - Write your slides in [Markdown](http://daringfireball.net/projects/markdown/syntax) or .fsx files
+- Automatically updates the browser in edit mode on every save
 - Syntax highlighting for most programming languages including C#, F# and LaTeX
 - Speaker notes; Shows the current slide, next slide, elapsed time and current time
 - Built in themes
@@ -26,8 +27,5 @@ and brings F# to the [reveal.js][revealjs] web presentation framework.
 - [@kimsk](https://github.com/kimsk)
 - [@forki](https://github.com/forki)
 - [@troykershaw](https://github.com/troykershaw)
-- [@agross](https://github.com/agross)
-- [@shishkin](https://github.com/shishkin)
-- [@ilkerde](https://github.com/ilkerde)
 
-The default maintainer account for projects under "fsprojects" is [@fsgit](https://github.com/fsgit) - F# Community Project Incubation Space (repo management)
+The default maintainer account for projects under "fsprojects" is [@fsprojectsgit](https://github.com/fsprojectsgit) - F# Community Project Incubation Space (repo management)
