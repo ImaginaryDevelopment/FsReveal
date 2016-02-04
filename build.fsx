@@ -140,24 +140,18 @@ Target "KeepRunning" (fun _ ->
 )
 
 Target "Release" (fun _ ->
-  if gitProjectName = "MyProject" then
+  if gitOwner = "myGitUser" || gitProjectName = "MyProject" then
       failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
   let tempDocsDir = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
   CleanDir tempDocsDir
   Repository.cloneSingleBranch "" (gitHome + "/" + gitProjectName + ".git") "gh-pages" tempDocsDir
+
   fullclean tempDocsDir
   CopyRecursive outDir tempDocsDir true |> tracefn "%A"
 )
 
 Target "ReleaseSlides" (fun _ ->
-    if gitOwner = "myGitUser" || gitProjectName = "MyProject" then
-        failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
     let tempDocsDir = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
-    CleanDir tempDocsDir
-    Repository.cloneSingleBranch "" (gitHome + "/" + gitProjectName + ".git") "gh-pages" tempDocsDir
-
-    fullclean tempDocsDir
-    CopyRecursive outDir tempDocsDir true |> tracefn "%A"
     StageAll tempDocsDir
     Git.Commit.Commit tempDocsDir "Update generated slides"
     Branches.push tempDocsDir
@@ -168,7 +162,11 @@ Target "ReleaseSlides" (fun _ ->
   ==> "KeepRunning"
 
 "GenerateSlides"
-  ==> "ReleaseSlides"
   ==> "Release"
+
+"GenerateSlides"
+  ==> "Release"
+  ==> "ReleaseSlides"
+
 
 RunTargetOrDefault "KeepRunning"
