@@ -2,7 +2,7 @@
 - title : F# intro via FsReveal
 - description : Introduction to F# with help from FsReveal
 - author : Brandon D'Imperio
-- theme : Sky
+- theme : sky
 - transition : default
 
 ***
