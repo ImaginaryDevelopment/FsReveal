@@ -1,94 +1,281 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <title>FsReveal
-</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="FsReveal parses markdown or F# script file and generate reveal.js slides."/>
-    <meta name="author" content="Karlkim Suwanmongkol"/>
-
-    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
-
-    <link type="text/css" rel="stylesheet" href="./content/style.css" />
-    <script type="text/javascript" src="./content/tips.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<head>
+    <meta charset="utf-8">
+    <title>F# intro via FsReveal</title>
+    <meta name="description" content="Introduction to F# with help from FsReveal">
+    <meta name="author" content="Brandon D'Imperio">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
     <!--[if lt IE 9]>
-      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://github.com/fsprojects/FsReveal">github page</a></li>
-        </ul>
-        <h3 class="muted"><a href="./index.html">FsReveal</a></h3>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span9" id="main">
-          
-<h1><a name="FsReveal" class="anchor" href="#FsReveal">FsReveal</a></h1>
-<p>FsReveal allows you to write beautiful slides in Markdown and brings C# and F# to the <a href="https://github.com/hakimel/reveal.js/" title="reveal.js | HTML presentations made easy">reveal.js</a> web presentation framework.</p>
-<h2><a name="Features" class="anchor" href="#Features">Features</a></h2>
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">val c : int<br /><br />Full name: index.c</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h3>INTRO TO F#</h3>
+<h4>(For C#ers)</h4>
 <ul>
-<li>Write your slides in <a href="formatting.html">Markdown</a> or .fsx files</li>
-<li>Automatically updates the browser in edit mode on every save</li>
-<li>Syntax highlighting for most programming languages including C#, F# and LaTeX</li>
-<li>Speaker notes; Shows the current slide, next slide, elapsed time and current time</li>
-<li>Built in themes</li>
-<li>Horizontal and vertical slides</li>
-<li>Built in slide transitions using CSS 3D transforms</li>
-<li>Slide overview</li>
-<li>Works on mobile browsers. Swipe your way through the presentation.</li>
+<li>by Brandon D'Imperio</li>
+<li><a href="http://imaginarydevelopment.blogspot.com">imaginarydevelopment.blogspot.com</a></li>
+<li><a href="http://www.twitter.com/MaslowJax">@MaslowJax</a></li>
 </ul>
-<h2><a name="Getting-started" class="anchor" href="#Getting-started">Getting started</a></h2>
-<ul>
-<li>Read the <a href="getting-started.html">getting started tutorial</a></li>
-<li>Checkout the <a href="formatting.html">formatting docs</a> to learn how to style your slides.</li>
-</ul>
-<h2><a name="Examples" class="anchor" href="#Examples">Examples</a></h2>
-<p>Check out what others have created. Submit a PR if you have something to add to the list.</p>
-<ul>
-<li><a href="http://kimsk.github.io/fsreveal-sample-md/FsReveal.html#/" title="Markdown example">Markdown example</a> by <a href="https://twitter.com/kimsk" title="@kimsk on Twitter">@kimsk</a> <a href="https://github.com/kimsk/fsreveal-sample-md/blob/master/slides/FsReveal.md" title="Markdown example source">(source)</a></li>
-<li><a href="http://kimsk.github.io/fsreveal-sample-fsx/FsReveal.html#/" title=".fsx example">.fsx example</a> by <a href="https://twitter.com/kimsk" title="@kimsk on Twitter">@kimsk</a> <a href="https://github.com/kimsk/fsreveal-sample-fsx/blob/master/slides/FsReveal.fsx" title=".fsx example source">(source)</a></li>
-<li><a href="http://forki.github.io/PaketIntro/">Paket - Intro</a> by <a href="https://twitter.com/sforkmann" title="@sforkmann on Twitter">@sforkmann</a> <a href="https://github.com/forki/PaketIntro/blob/master/slides/index.md">(source)</a></li>
-<li><a href="http://forki.github.io/FAKE.Intro/">FAKE - Intro</a> by <a href="https://twitter.com/sforkmann" title="@sforkmann on Twitter">@sforkmann</a> <a href="https://github.com/forki/FAKE.Intro/blob/master/slides/index.md">(source)</a></li>
-<li><a href="http://troykershaw.github.io/RpgFsharpWorkshop" title="RPG F# Workshop">RPG F# Workshop</a> by <a href="https://twitter.com/troykershaw" title="@troykershaw on Twitter">@troykershaw</a> <a href="https://github.com/troykershaw/RpgFsharpWorkshop" title="RPG F# Workshop source">(source)</a></li>
-<li><a href="http://panesofglass.github.io/TodoBackendFSharp" title="F# on the Web - 0 to production in 12 weeks">F# on the Web - 0 to production in 12 weeks</a> by <a href="https://twitter.com/panesofglass" title="@panesofglass on Twitter">@panesofglass</a> <a href="https://github.com/panesofglass/TodoBackendFSharp" title="F# on the Web source">(source)</a></li>
-</ul>
-<p>More samples can be found in the <a href="http://fsprojects.github.io/FsReveal/formatting.html">formatting docs</a>.</p>
-<h2><a name="Contributing-and-copyright" class="anchor" href="#Contributing-and-copyright">Contributing and copyright</a></h2>
-<p>The project is hosted on <a href="https://github.com/fsprojects/FsReveal">GitHub</a> where you can <a href="https://github.com/fsprojects/FsReveal/issues">report issues</a>, fork
-the project and submit pull requests on the develop branch. If you're adding new public API, please also
-consider adding <a href="https://github.com/fsprojects/FsReveal/tree/develop/docs/content">samples</a> that can be turned into a documentation. You might
-also want to read <a href="https://github.com/fsprojects/FsReveal/blob/develop/README.md">library design notes</a> to understand how it works.</p>
-<p>The library is available under MIT license, which allows modification and
-redistribution for both commercial and non-commercial purposes. For more information see the
-<a href="https://github.com/fsprojects/FsReveal/blob/develop/LICENSE.txt">License file</a> in the GitHub repository.</p>
+</section>
+<section >
+<section >
+<h3>SYNTAX</h3>
+<h4>F# (with tooltips)</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">c</span> <span class="o">=</span> <span class="n">1</span> <span class="o">+</span> <span class="n">5</span>
+</code></pre></td>
+</tr>
+</table>
+<p>c is evaluated for you</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="i">c</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h4>C#</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="cs"><span class="k">using</span> System;
+
+<span class="k">class</span> Program
+{
+    <span class="k">static</span> <span class="k">void</span> Main()
+    {
+        Console.WriteLine(<span class="s">"Hello, world!"</span>);
+    }
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<h4>JavaScript</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="js"><span class="k">function</span> copyWithEvaluation(iElem, elem) {
+    <span class="k">return</span> <span class="k">function</span> (obj) {
+        <span class="k">var</span> newObj <span class="o">=</span> {};
+        <span class="k">for</span> (<span class="k">var</span> p <span class="k">in</span> obj) {
+            <span class="k">var</span> v <span class="o">=</span> obj[p];
+            <span class="k">if</span> (<span class="k">typeof</span> v <span class="o">=</span><span class="o">=</span><span class="o">=</span> <span class="s">"function"</span>) {
+                v <span class="o">=</span> v(iElem, elem);
+            }
+            newObj[p] <span class="o">=</span> v;
+        }
+        <span class="k">if</span> (!newObj.exactTiming) {
+            newObj.delay <span class="o">+</span><span class="o">=</span> exports._libraryDelay;
+        }
+        <span class="k">return</span> newObj;
+    };
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<h4>Haskell</h4>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="haskell">recur_count k <span class="prep">=</span> <span class="n">1</span> : <span class="n">1</span> :
+    zipWith recurAdd (recur_count k) (tail (recur_count k))
+        <span class="k">where</span> recurAdd x y <span class="prep">=</span> k * x <span class="prep">+</span> y
+
+main <span class="prep">=</span> <span class="k">do</span>
+  argv <span class="prep">&lt;</span><span class="prep">-</span> getArgs
+  inputFile <span class="prep">&lt;</span><span class="prep">-</span> openFile (head argv) ReadMode
+  line <span class="prep">&lt;</span><span class="prep">-</span> hGetLine inputFile
+  <span class="k">let</span> [n,k] <span class="prep">=</span> map read (words line)
+  printf <span class="s">"%d\n"</span> ((recur_count k) !! (n<span class="n">-1</span>))
+</code></pre></td></tr></table>
+<p><em>code from <a href="https://github.com/NashFP/rosalind/blob/master/mark_wutka%2Bhaskell/FIB/fib_ziplist.hs">NashFP/rosalind</a></em></p>
+</section>
+<section >
+<h3>SQL</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="sql"><span class="k">select</span> *
+<span class="k">from</span>
+(<span class="k">select</span> <span class="n">1</span> <span class="k">as</span> Id <span class="k">union</span> <span class="k">all</span> <span class="k">select</span> <span class="n">2</span> <span class="k">union</span> <span class="k">all</span> <span class="k">select</span> <span class="n">3</span>) <span class="k">as</span> X
+<span class="k">where</span> Id <span class="k">in</span> (@Ids<span class="n">1</span>, @Ids<span class="n">2</span>, @Ids<span class="n">3</span>)
+</code></pre></td></tr></table>
+<p><em>sql from <a href="https://code.google.com/p/dapper-dot-net/">Dapper</a></em></p>
+</section>
+<section >
+<h3>Paket</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="paket"><span class="k">source</span> https://nuget.org/api/v2
+
+<span class="k">nuget </span>Castle.Windsor-log4net <span class="o">&gt;=</span> <span class="n">3.2</span>
+<span class="k">nuget </span>NUnit
+
+<span class="k">github </span>forki/FsUnit FsUnit.fs
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>C/AL</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="cal">PROCEDURE FizzBuzz(n : Integer) r_Text : Text[1024];
+VAR
+  l_Text : Text[1024];
+BEGIN
+  r_Text := '';
+  l_Text := FORMAT(n);
+
+  IF (n MOD 3 = 0) OR (STRPOS(l_Text,'3') &gt; 0) THEN
+    r_Text := 'Fizz';
+  IF (n MOD 5 = 0) OR (STRPOS(l_Text,'5') &gt; 0) THEN
+    r_Text := r_Text + 'Buzz';
+  IF r_Text = '' THEN
+    r_Text := l_Text;
+END;
+</code></pre></td></tr></table>
+</section>
+</section>
+<section >
+<p><strong>Bayes' Rule in LaTeX</strong></p>
+<p><span class="math">\(\Pr(A|B)=\frac{\Pr(B|A)\Pr(A)}{\Pr(B|A)\Pr(A)+\Pr(B|\neg A)\Pr(\neg A)}\)</span></p>
+</section>
+<section >
+<h3>The Reality of a Developer's Life</h3>
+<p><strong>When I show my boss that I've fixed a bug:</strong></p>
+<p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-07.gif" alt="When I show my boss that I've fixed a bug" /></p>
+<p><strong>When your regular expression returns what you expect:</strong></p>
+<p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-03.gif" alt="When your regular expression returns what you expect" /></p>
+<p><em>from <a href="http://server.dzone.com/articles/reality-developers-life-gifs">The Reality of a Developer's Life - in GIFs, Of Course</a></em></p>
+</section>
 
 
         </div>
-        <div class="span3">
-          <img src="./img/logo-2.png" alt="F# Project" style="width:150px;margin:10px" />  
-          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
-            <li class="nav-header">FsReveal</li>
-            <li><a href="./index.html">Home page</a></li>
-            <li><a href="./getting-started.html">Getting Started</a></li>
-            <li><a href="./formatting.html">Formatting docs</a></li>
-            <li class="divider"></li>            
-            <li><a href="http://github.com/fsprojects/FsReveal">Source Code on GitHub</a></li>
-            <li><a href="./license.html">License</a></li>
-            <li><a href="./release-notes.html">Release Notes</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-    <a href="http://github.com/fsprojects/FsReveal"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
-  </body>
-  </html>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
