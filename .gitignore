@@ -11,3 +11,4 @@ output/
 packages/
 .paket/paket.exe
 temp/
+.fake/
