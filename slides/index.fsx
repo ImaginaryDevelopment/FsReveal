@@ -1,4 +1,4 @@
-﻿(**
+(**
 - title : F# intro via FsReveal
 - description : Introduction to F# with help from FsReveal
 - author : Brandon D'Imperio
@@ -22,6 +22,7 @@
 #### F# (with tooltips)
 
 *)
+open System
 let a = 5 // var a = 5;
 let c = 1 + a // var c = 1 + a;
 // public int Factorial(int x) => Enumerable.Range(1, x)
