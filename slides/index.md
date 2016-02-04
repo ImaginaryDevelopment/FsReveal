@@ -1,47 +1,30 @@
-- title : FsReveal
-- description : Introduction to FsReveal
-- author : Karlkim Suwanmongkol
-- theme : night
+- title : F# intro via FsReveal
+- description : Introduction to F# with help from FsReveal
+- author : Brandon D'Imperio
+- theme : sky
 - transition : default
 
 ***
 
-### What is FsReveal?
+### INTRO TO F#
 
-- Generates [reveal.js](http://lab.hakim.se/reveal-js/#/) presentation from [markdown](http://daringfireball.net/projects/markdown/)
-- Utilizes [FSharp.Formatting](https://github.com/tpetricek/FSharp.Formatting) for markdown parsing
-- [Fsx Version](sample.html) of these slides
-- Get it from [http://fsprojects.github.io/FsReveal/](http://fsprojects.github.io/FsReveal/)
+#### (For C#ers)
 
-![FsReveal](images/logo.png)
-
-***
-
-### Reveal.js
-
-- A framework for easily creating beautiful presentations using HTML.
-
-
-> **Atwood's Law**: any application that can be written in JavaScript, will eventually be written in JavaScript.
+- by Brandon D'Imperio
+- [imaginarydevelopment.blogspot.com](http://imaginarydevelopment.blogspot.com)
+- [@MaslowJax](http://www.twitter.com/MaslowJax)
 
 ***
 
-### FSharp.Formatting
-
-- F# tools for generating documentation (Markdown processor and F# code formatter).
-- It parses markdown and F# script file and generates HTML or PDF.
-- Code syntax highlighting support.
-- It also evaluates your F# code and produce tooltips.
-
-***
-
-### Syntax Highlighting
+### SYNTAX
 
 #### F# (with tooltips)
 
-    let a = 5
-    let factorial x = [1..x] |> List.reduce (*)
-    let c = factorial a
+    let c = 1 + 5
+
+c is evaluated for you
+
+    c
 
 ---
 
@@ -84,9 +67,9 @@
 ---
 
 #### Haskell
- 
+
     [lang=haskell]
-    recur_count k = 1 : 1 : 
+    recur_count k = 1 : 1 :
         zipWith recurAdd (recur_count k) (tail (recur_count k))
             where recurAdd x y = k * x + y
 
@@ -120,9 +103,9 @@
 
     nuget Castle.Windsor-log4net >= 3.2
     nuget NUnit
-    
+
     github forki/FsUnit FsUnit.fs
-      
+
 ---
 
 ### C/AL
@@ -151,15 +134,14 @@ $ \Pr(A|B)=\frac{\Pr(B|A)\Pr(A)}{\Pr(B|A)\Pr(A)+\Pr(B|\neg A)\Pr(\neg A)} $
 
 ***
 
-### The Reality of a Developer's Life 
+### The Reality of a Developer's Life
 
 **When I show my boss that I've fixed a bug:**
-  
-![When I show my boss that I've fixed a bug](http://www.topito.com/wp-content/uploads/2013/01/code-07.gif)
-  
-**When your regular expression returns what you expect:**
-  
-![When your regular expression returns what you expect](http://www.topito.com/wp-content/uploads/2013/01/code-03.gif)
-  
-*from [The Reality of a Developer's Life - in GIFs, Of Course](http://server.dzone.com/articles/reality-developers-life-gifs)*
 
+![When I show my boss that I've fixed a bug](http://www.topito.com/wp-content/uploads/2013/01/code-07.gif)
+
+**When your regular expression returns what you expect:**
+
+![When your regular expression returns what you expect](http://www.topito.com/wp-content/uploads/2013/01/code-03.gif)
+
+*from [The Reality of a Developer's Life - in GIFs, Of Course](http://server.dzone.com/articles/reality-developers-life-gifs)*
