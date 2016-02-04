@@ -13,7 +13,7 @@ if %ERRORLEVEL% NEQ 0 (
   exit /b %errorlevel%
 )
 
-packages\FAKE\tools\FAKE.exe build.fsx RELEASE %*
+packages\FAKE\tools\FAKE.exe build.fsx ReleaseSlides %*
 if %ERRORLEVEL% NEQ 0 (
   pause
   exit /b ERRORLEVEL%
