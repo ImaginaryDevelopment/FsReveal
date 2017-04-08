@@ -7,15 +7,6 @@
 
 ***
 
-### FsReveal notes #
-
-- [http://fsprojects.github.io/FsReveal/getting-started.html](http://fsprojects.github.io/FsReveal/getting-started.html)
-- `Esc` to see overview
-- `f` to view in fullscreen
-- `s` to see speaker notes
-
-***
-***
 
 ### INTRO TO F#
 
@@ -24,6 +15,14 @@
 - by Brandon D'Imperio
 - [imaginarydevelopment.blogspot.com](http://imaginarydevelopment.blogspot.com)
 - [@MaslowJax](http://www.twitter.com/MaslowJax)
+
+---
+### FsReveal notes #
+
+- [http://fsprojects.github.io/FsReveal/getting-started.html](http://fsprojects.github.io/FsReveal/getting-started.html)
+- `Esc` to see overview
+- `f` to view in fullscreen
+- `s` to see speaker notes
 
 ***
 
@@ -42,8 +41,8 @@ module Syntax =
 (**
 fsreveal magic `c` and `d` are evaluated for you
 *)
-(*** include-value: c ***)
-(*** include-value: d ***)
+(*** include-value: Syntax.c ***)
+(*** include-value: Syntax.d ***)
 (**
 
 ---
@@ -115,16 +114,18 @@ module Casting2 =
   // var a2 = x as int?;
   // if(a2 != null) Console.WriteLine("int value:" + a2);
   // else Console.WriteLine(x.ToString());
-  match x with
-  | :? int as a -> printfn "int value: %i" a
-  // calls ToString if it is not null, a tuple, record or union
-  | null -> printfn "non-int null value is %A" x // would print <null> for null values
-  // conditional matches
-  | :? string as str when str.Length > 0 -> printfn "string value: %s" str
-  // also prints <null> for null values
-  | x -> printfn "nonNull value is %O" x // calls toString if it is not null
-  // advanced/arguably misusable power: 
-  // in F# we don't need to use a separate variable name for the casted variable
+  let result = 
+    match x with
+    | :? int as a -> sprintf "int value: %i" a
+    // calls ToString if it is not null, a tuple, record or union
+    | null -> sprintf "non-int null value is %A" x // would print <null> for null values
+    // conditional matches
+    | :? string as str when str.Length > 0 -> sprintf "string value: %s" str
+    // also prints <null> for null values
+    | x -> sprintf "nonNull value is %O" x // calls toString if it is not null
+    // advanced/arguably misusable power: 
+    // in F# we don't need to use a separate variable name for the casted variable
+(*** include-value: Casting2.result ***)
 
 (**
 ***
