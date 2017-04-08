@@ -13,9 +13,12 @@ let gitOwner = "ImaginaryDevelopment"
 let gitHome = "https://github.com/" + gitOwner
 // The name of the project on GitHub
 let gitProjectName = "FsReveal"
+// The name of the GitHub repo subdirectory to publish slides to
+let gitSubDir = ""
 
 open FsReveal
 open Fake
+
 open Fake.Git
 open System.IO
 open System.Diagnostics
@@ -139,36 +142,37 @@ Target "KeepRunning" (fun _ ->
     watcher.Dispose()
 )
 
-Target "Release" (fun _ ->
-  if gitProjectName = "MyProject" then
-      failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
-  let tempDocsDir = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
-  CleanDir tempDocsDir
-  Repository.cloneSingleBranch "" (gitHome + "/" + gitProjectName + ".git") "gh-pages" tempDocsDir
-  fullclean tempDocsDir
-  CopyRecursive outDir tempDocsDir true |> tracefn "%A"
-)
-
 Target "ReleaseSlides" (fun _ ->
     if gitOwner = "myGitUser" || gitProjectName = "MyProject" then
         failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
-    let tempDocsDir = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
-    CleanDir tempDocsDir
+    let tempDocsRoot = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
+    let tempDocsDir = tempDocsRoot </> gitSubDir
+    CleanDir tempDocsRoot
     Repository.cloneSingleBranch "" (gitHome + "/" + gitProjectName + ".git") "gh-pages" tempDocsDir
 
     fullclean tempDocsDir
     CopyRecursive outDir tempDocsDir true |> tracefn "%A"
-    StageAll tempDocsDir
-    Git.Commit.Commit tempDocsDir "Update generated slides"
-    Branches.push tempDocsDir
+    StageAll tempDocsRoot
+    Git.Commit.Commit tempDocsRoot "Update generated slides"
+    Branches.push tempDocsRoot
+)
+
+// my own version of their Release just produce the output, don't do any git fetch/stage/commit/push 
+Target "Release" (fun _ ->
+  if gitProjectName = "MyProject" then
+      failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
+  let tempDocsRoot = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
+  let tempDocsDir = tempDocsRoot </> gitSubDir
+  CleanDir tempDocsRoot
+  fullclean tempDocsDir
+  CopyRecursive outDir tempDocsDir true |> tracefn "%A"
 )
 
 "Clean"
   ==> "GenerateSlides"
   ==> "KeepRunning"
 
-"GenerateSlides"
-  ==> "ReleaseSlides"
-  ==> "Release"
+For "Release" ["GenerateSlides"]
+For "ReleaseSlides" ["GenerateSlides"]
 
 RunTargetOrDefault "KeepRunning"
