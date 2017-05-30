@@ -29,10 +29,11 @@
 ### Syntax
 
 #### F# (with tooltips)
+' module is like a static class, but no constructor is allowed
 
 *)
 open System
-module Syntax = 
+module Syntax =
   let a = 5 // var a = 5;
   let c = 1 + a // var c = 1 + a;
   // public int Twice(int x) => x * 2;
@@ -68,10 +69,11 @@ module Assignment =
 ---
 ### Flow Control
 #### if
+' consider touching on automatic generalization here
 *)
 // string F1(int x) => x < 5 ? "less than" : "not less than";
 let f1 x = if x < 5 then "less than" else "not less than"
-// string F2(int lower, int x, int upper) => 
+// string F2(int lower, int x, int upper) =>
 //    x < lower ? "less than" : x > upper ? "greater than" : "between";
 let f2 lower x upper =
   if x < lower then
@@ -114,7 +116,7 @@ module Casting2 =
   // var a2 = x as int?;
   // if(a2 != null) Console.WriteLine("int value:" + a2);
   // else Console.WriteLine(x.ToString());
-  let result = 
+  let result =
     match x with
     | :? int as a -> sprintf "int value: %i" a
     // calls ToString if it is not null, a tuple, record or union
@@ -123,7 +125,7 @@ module Casting2 =
     | :? string as str when str.Length > 0 -> sprintf "string value: %s" str
     // also prints <null> for null values
     | x -> sprintf "nonNull value is %O" x // calls toString if it is not null
-    // advanced/arguably misusable power: 
+    // advanced/arguably misusable power:
     // in F# we don't need to use a separate variable name for the casted variable
 (*** include-value: Casting2.result ***)
 
@@ -131,14 +133,13 @@ module Casting2 =
 ***
 ### Syntax 2
 #### fields vs methods
+' c# static readonly vs const https://stackoverflow.com/questions/755685/static-readonly-vs-const
 *)
 module FExamples =
   // readonly static int x = 1;
-  let x = 1 // static field
-  // int Y() => 1;
-  let y () = 1 // method
-  // void Z() {}
-  let z () = ()
+  let x = 1 // static readonly field or perhaps const
+  let z () = () // void Z() {}
+  let y () = 1 // int Y() => 1;
   // void F(int x) {}
   let f (x:int) = () // method
   // void F2(int x) => f(x);
@@ -151,7 +152,7 @@ module FExamples =
     [lang=cs]
     public class Employee
     {
-      int x="hello";
+      readonly int x="hello";
       public int Foo() => x;
       public int Z => x;
       public static void Bar() => {};
@@ -178,11 +179,12 @@ type IAmAnInterface =
 *)
 type ClassImplements () =
   let x = "hello"
-  // you can use whatever name you like for `this`
-  member __.Bark() = x
+  member this.Bark() = x
   // Foo is a property! not a field
-  member __.Foo = x
+  member this.Foo = x
+  // you can use whatever name you like for `this`
   member __.Foo2 with get() = x
+  // this creates a backing field of its own, using x's value as the initial value
   member val Bar = x with get,set
 
   // f# downside no implicit interface implementation
@@ -190,9 +192,10 @@ type ClassImplements () =
   // members only show up/compile if you cast the type to the interface first
   interface IAmAnInterface with
     member __.Foo = x
+    // this isn't recursive
     member this.Bark () = this.Bark()
-    member this.Bar 
-      with get() = this.Bar 
+    member this.Bar
+      with get() = this.Bar
       and set v = this.Bar <- v
 
 (**
@@ -219,7 +222,8 @@ type ClassImplements () =
 type Employee = {Name:string; EmployeeId:Guid; Salary:decimal}
 let e = {Name="Brandon D'Imperio"; EmployeeId=Guid.NewGuid(); Salary = 15.5m}
 // how much typing would you need to do in C# to do this?
-// create a new employee with the same salary ... and any other properties that we don't set get copied.
+// create a new employee with the same salary
+// and any other properties that we don't set get copied.
 let e2 = {e with Name="John Doe"; EmployeeId = Guid.NewGuid()}
 
 (**
@@ -250,9 +254,9 @@ module SequenceExamples =
     var q= from i in items
       join j in items on i equals j
       select new {i,j};
-
 ---
 #### Linq
+' touch on lambda syntax here
 *)
 
 module NotLinq =
@@ -280,12 +284,18 @@ module Querying =
 (**
 ***
 #### Units of Measure
+' consider discussing type aliases
 
 *)
-[<Measure>] type sqft
+[<Measure>] type inch
+[<Measure>] type foot
+[<Measure>] type sqft = foot*foot
 [<Measure>] type dollar
 let sizes = [|1700<sqft>;2100<sqft>;1900<sqft>;1300<sqft>|]
 let prices = [|53000<dollar>;44000<dollar>;59000<dollar>;82000<dollar>|]
+let inchesPerFoot = 12<inch/foot>
+// can't seem to get this working here, nor in linqpad
+// let numLiteral = 12_000<dollar>
 (**
 
 #### `prices.[0]/sizes.[0]`
@@ -293,5 +303,45 @@ let prices = [|53000<dollar>;44000<dollar>;59000<dollar>;82000<dollar>|]
 *)
 (*** include-value: prices.[0]/sizes.[0] ***)
 (**
+***
+#### Not Covered, barely scratched surface, or not covered well
+### Good
+- Pattern matching (exhaustive matching and compiler warnings)
+- Option types
+- Units of measure conversions
+- Discriminated Unions (also recursive DUs)
+- Tuples (easier and more useful)
+- Object expressions (we don't need a class or record to implement an interface)
+- Computation expressions
+- keywords - `rec`, `function`, `async`, `lazy`, `_`
+- Tupled vs curried method forms
+
+---
+- Statically resolved type parameters (structural typing)
+- Unwanted features (don't have, and don't want) - implicit casts
+- Underscores in numeric literals as of 4.1
+- """ triple quoted strings """
+- Extension methods, properties, events, static methods
+- shadowing (`let x = 1; let x = x + 1;`)
+- signature files
+- There are all of 3 features in C# since 2.0 that F# didn't have before C# did (citation needed, if true)
+
+---
+### Bad-ish
+- Generic Measures can be difficult to work with
+- Missing features (`nameof` operator, covariance/contravariance)
+- Interop(ugliness of delegate interop)
+- Nested classes
+- No implicit interface implementations
+- No good tooling for UI work (mvc, wpf, winforms, webforms, etc.)
+- try reflection walking a namespace to get modules
+- works in unity, but can't be main assembly
+- works in mvc, but can't write razor pages in it
+- can't T4
+
+***
+#### Resources
+- Try F# in the browser - http://www.tryfsharp.org/ / https://dotnetfiddle.net/ - https://dotnetpad.net/
+- Lots of good learning on F# - http://fsharpforfunandprofit.com/
 
 *)
