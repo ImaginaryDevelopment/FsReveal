@@ -501,11 +501,13 @@ c# static readonly vs const https://stackoverflow.com/questions/755685/static-re
 <span class="l">3: </span>
 <span class="l">4: </span>
 <span class="l">5: </span>
+<span class="l">6: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs61', 122)" onmouseover="showTip(event, 'fs61', 122)" class="t">Employee</span> <span class="o">=</span> {<span onmouseout="hideTip(event, 'fs62', 123)" onmouseover="showTip(event, 'fs62', 123)" class="i">Name</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs28', 124)" onmouseover="showTip(event, 'fs28', 124)" class="t">string</span>; <span onmouseout="hideTip(event, 'fs63', 125)" onmouseover="showTip(event, 'fs63', 125)" class="i">EmployeeId</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs64', 126)" onmouseover="showTip(event, 'fs64', 126)" class="t">Guid</span>; <span onmouseout="hideTip(event, 'fs65', 127)" onmouseover="showTip(event, 'fs65', 127)" class="i">Salary</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs66', 128)" onmouseover="showTip(event, 'fs66', 128)" class="t">decimal</span>}
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs67', 129)" onmouseover="showTip(event, 'fs67', 129)" class="i">e</span> <span class="o">=</span> {<span class="i">Name</span><span class="o">=</span><span class="s">&quot;Brandon D&#39;Imperio&quot;</span>; <span class="i">EmployeeId</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs64', 130)" onmouseover="showTip(event, 'fs64', 130)" class="t">Guid</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs68', 131)" onmouseover="showTip(event, 'fs68', 131)" class="f">NewGuid</span>(); <span class="i">Salary</span> <span class="o">=</span> <span class="n">15.5m</span>}
 <span class="c">// how much typing would you need to do in C# to do this?</span>
-<span class="c">// create a new employee with the same salary ... and any other properties that we don&#39;t set get copied.</span>
+<span class="c">// create a new employee with the same salary</span>
+<span class="c">// and any other properties that we don&#39;t set get copied.</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs69', 132)" onmouseover="showTip(event, 'fs69', 132)" class="i">e2</span> <span class="o">=</span> {<span onmouseout="hideTip(event, 'fs67', 133)" onmouseover="showTip(event, 'fs67', 133)" class="i">e</span> <span class="k">with</span> <span class="i">Name</span><span class="o">=</span><span class="s">&quot;John Doe&quot;</span>; <span class="i">EmployeeId</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs64', 134)" onmouseover="showTip(event, 'fs64', 134)" class="t">Guid</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs68', 135)" onmouseover="showTip(event, 'fs68', 135)" class="f">NewGuid</span>()}
 </code></pre></td>
 </tr>
@@ -656,7 +658,7 @@ consider discussing type aliases<br/>
 </section>
 <section >
 <ul>
-<li>Statically resolved type parameters (duck typing)</li>
+<li>Statically resolved type parameters (structural typing)</li>
 <li>Unwanted features (don't have, and don't want) - implicit casts</li>
 <li>Underscores in numeric literals as of 4.1</li>
 <li>""" triple quoted strings """</li>
