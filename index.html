@@ -78,8 +78,8 @@
 <div class="tip" id="fs30">property String.Length: int</div>
 <div class="tip" id="fs31">val x : obj</div>
 <div class="tip" id="fs32">val x : int<br /><br />Full name: Index.FExamples.x</div>
-<div class="tip" id="fs33">val y : unit -&gt; int<br /><br />Full name: Index.FExamples.y</div>
-<div class="tip" id="fs34">val z : unit -&gt; unit<br /><br />Full name: Index.FExamples.z</div>
+<div class="tip" id="fs33">val z : unit -&gt; unit<br /><br />Full name: Index.FExamples.z</div>
+<div class="tip" id="fs34">val y : unit -&gt; int<br /><br />Full name: Index.FExamples.y</div>
 <div class="tip" id="fs35">val f : x:int -&gt; unit<br /><br />Full name: Index.FExamples.f</div>
 <div class="tip" id="fs36">val f2 : x:int -&gt; unit<br /><br />Full name: Index.FExamples.f2</div>
 <div class="tip" id="fs37">Multiple items<br />type HelloClass =<br />&#160;&#160;new : unit -&gt; HelloClass<br />&#160;&#160;member Foo : unit -&gt; string<br />&#160;&#160;member Z : string<br />&#160;&#160;static member Bar : unit -&gt; unit<br /><br />Full name: Index.HelloClass<br /><br />--------------------<br />new : unit -&gt; HelloClass</div>
@@ -341,25 +341,24 @@ consider touching on automatic generalization here<br/>
 <section >
 <h3>Syntax 2</h3>
 <h4>fields vs methods</h4>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-<span class="l">11: </span>
+<aside class="notes">
+c# static readonly vs const https://stackoverflow.com/questions/755685/static-readonly-vs-const<br/>
+</aside>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">FExamples</span> <span class="o">=</span>
   <span class="c">// readonly static int x = 1;</span>
-  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 65)" onmouseover="showTip(event, 'fs32', 65)" class="i">x</span> <span class="o">=</span> <span class="n">1</span> <span class="c">// static readonly field</span>
-  <span class="c">// int Y() =&gt; 1;</span>
-  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 66)" onmouseover="showTip(event, 'fs33', 66)" class="f">y</span> () <span class="o">=</span> <span class="n">1</span> <span class="c">// method</span>
-  <span class="c">// void Z() {}</span>
-  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 67)" onmouseover="showTip(event, 'fs34', 67)" class="f">z</span> () <span class="o">=</span> ()
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 65)" onmouseover="showTip(event, 'fs32', 65)" class="i">x</span> <span class="o">=</span> <span class="n">1</span> <span class="c">// static readonly field or perhaps const</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 66)" onmouseover="showTip(event, 'fs33', 66)" class="f">z</span> () <span class="o">=</span> () <span class="c">// void Z() {}</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 67)" onmouseover="showTip(event, 'fs34', 67)" class="f">y</span> () <span class="o">=</span> <span class="n">1</span> <span class="c">// int Y() =&gt; 1;</span>
   <span class="c">// void F(int x) {}</span>
   <span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 68)" onmouseover="showTip(event, 'fs35', 68)" class="f">f</span> (<span onmouseout="hideTip(event, 'fs5', 69)" onmouseover="showTip(event, 'fs5', 69)" class="i">x</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs19', 70)" onmouseover="showTip(event, 'fs19', 70)" class="t">int</span>) <span class="o">=</span> () <span class="c">// method</span>
   <span class="c">// void F2(int x) =&gt; f(x);</span>
@@ -381,7 +380,7 @@ consider touching on automatic generalization here<br/>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="cs"><span class="k">public</span> <span class="k">class</span> Employee
 {
-  <span class="k">int</span> x=<span class="s">"hello"</span>;
+  <span class="k">readonly</span> <span class="k">int</span> x=<span class="s">"hello"</span>;
   <span class="k">public</span> <span class="k">int</span> Foo() <span class="o">=</span><span class="o">&gt;</span> x;
   <span class="k">public</span> <span class="k">int</span> Z <span class="o">=</span><span class="o">&gt;</span> x;
   <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> Bar() <span class="o">=</span><span class="o">&gt;</span> {};
