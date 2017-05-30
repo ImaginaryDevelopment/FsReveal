@@ -142,22 +142,23 @@ Target "KeepRunning" (fun _ ->
     watcher.Dispose()
 )
 
-Target "Release" (fun _ ->
-  if gitOwner = "myGitUser" || gitProjectName = "MyProject" then
-      failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
-  let tempDocsDir = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
-  CleanDir tempDocsDir
-  Repository.cloneSingleBranch "" (gitHome + "/" + gitProjectName + ".git") "gh-pages" tempDocsDir
+// Target "Release" (fun _ ->
+//   if gitOwner = "myGitUser" || gitProjectName = "MyProject" then
+//       failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
+//   let tempDocsDir = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
+//   CleanDir tempDocsDir
+//   Repository.cloneSingleBranch "" (gitHome + "/" + gitProjectName + ".git") "gh-pages" tempDocsDir
 
-  fullclean tempDocsDir
-  CopyRecursive outDir tempDocsDir true |> tracefn "%A"
-)
+//   fullclean tempDocsDir
+//   CopyRecursive outDir tempDocsDir true |> tracefn "%A"
+// )
 
-Target "ReleaseSlides" (fun _ ->
-    let tempDocsDir = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
-    StageAll tempDocsDir
-    Git.Commit.Commit tempDocsDir "Update generated slides"
-    Branches.push tempDocsDir
+// Target "ReleaseSlides" (fun _ ->
+//     let tempDocsDir = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
+//     StageAll tempDocsDir
+//     Git.Commit.Commit tempDocsDir "Update generated slides"
+//     Branches.push tempDocsDir
+// )
 Target "ReleaseSlides" (fun _ ->
     if gitOwner = "myGitUser" || gitProjectName = "MyProject" then
         failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
@@ -173,7 +174,7 @@ Target "ReleaseSlides" (fun _ ->
     Branches.push tempDocsRoot
 )
 
-// my own version of their Release just produce the output, don't do any git fetch/stage/commit/push 
+// my own version of their Release just produce the output, don't do any git fetch/stage/commit/push
 Target "Release" (fun _ ->
   if gitProjectName = "MyProject" then
       failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
