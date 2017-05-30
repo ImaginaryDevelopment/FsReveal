@@ -159,6 +159,9 @@ Target "KeepRunning" (fun _ ->
 //     Git.Commit.Commit tempDocsDir "Update generated slides"
 //     Branches.push tempDocsDir
 // )
+
+// would be lovely if we check for uncommitted/unpushed changes in the local branch before allowing new releases to be generated and pushed up
+// Git.FileStatus.getChangedFiles should be able to do this check
 Target "ReleaseSlides" (fun _ ->
     if gitOwner = "myGitUser" || gitProjectName = "MyProject" then
         failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
