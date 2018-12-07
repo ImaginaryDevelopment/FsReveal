@@ -82,12 +82,12 @@
 <div class="tip" id="fs34">val y : unit -&gt; int<br /><br />Full name: Index.FExamples.y</div>
 <div class="tip" id="fs35">val f : x:int -&gt; unit<br /><br />Full name: Index.FExamples.f</div>
 <div class="tip" id="fs36">val f2 : x:int -&gt; unit<br /><br />Full name: Index.FExamples.f2</div>
-<div class="tip" id="fs37">Multiple items<br />type HelloClass =<br />&#160;&#160;new : unit -&gt; HelloClass<br />&#160;&#160;member Foo : unit -&gt; string<br />&#160;&#160;member Y : obj<br />&#160;&#160;member Z : string<br />&#160;&#160;member Y : obj with set<br />&#160;&#160;static member Bar : unit -&gt; unit<br /><br />Full name: Index.HelloClass<br /><br />--------------------<br />new : unit -&gt; HelloClass</div>
+<div class="tip" id="fs37">Multiple items<br />type HelloClass =<br />&#160;&#160;new : unit -&gt; HelloClass<br />&#160;&#160;member Foo : unit -&gt; string<br />&#160;&#160;member Y : int<br />&#160;&#160;member Z : string<br />&#160;&#160;member Y : int with set<br />&#160;&#160;static member Bar : unit -&gt; unit<br /><br />Full name: Index.HelloClass<br /><br />--------------------<br />new : unit -&gt; HelloClass</div>
 <div class="tip" id="fs38">val x : string</div>
 <div class="tip" id="fs39">val this : HelloClass</div>
 <div class="tip" id="fs40">member HelloClass.Foo : unit -&gt; string<br /><br />Full name: Index.HelloClass.Foo</div>
 <div class="tip" id="fs41">member HelloClass.Z : string<br /><br />Full name: Index.HelloClass.Z</div>
-<div class="tip" id="fs42">member HelloClass.Y : obj<br /><br />Full name: Index.HelloClass.Y</div>
+<div class="tip" id="fs42">member HelloClass.Y : int<br /><br />Full name: Index.HelloClass.Y</div>
 <div class="tip" id="fs43">val set : elements:seq&lt;&#39;T&gt; -&gt; Set&lt;&#39;T&gt; (requires comparison)<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.set</div>
 <div class="tip" id="fs44">static member HelloClass.Bar : unit -&gt; unit<br /><br />Full name: Index.HelloClass.Bar</div>
 <div class="tip" id="fs45">Multiple items<br />type Foo =<br />&#160;&#160;new : unit -&gt; Foo<br /><br />Full name: Index.Foo<br /><br />--------------------<br />new : unit -&gt; Foo</div>
@@ -363,7 +363,7 @@ c# static readonly vs const https://stackoverflow.com/questions/755685/static-re
   <span class="c">// readonly static int x = 1;</span>
   <span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 63)" onmouseover="showTip(event, 'fs32', 63)" class="i">x</span> <span class="o">=</span> <span class="n">1</span>
   <span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 64)" onmouseover="showTip(event, 'fs33', 64)" class="f">z</span> () <span class="o">=</span> () <span class="c">// void Z() {}</span>
-  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 65)" onmouseover="showTip(event, 'fs34', 65)" class="f">y</span> () <span class="o">=</span> <span class="n">1</span> <span class="c">// int Y() =&gt; 1;</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 65)" onmouseover="showTip(event, 'fs34', 65)" class="f">y</span> () <span class="o">=</span> <span class="n">1</span> <span class="c">// int Y() { return 1;}</span>
   <span class="c">// void F(int x) {}</span>
   <span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 66)" onmouseover="showTip(event, 'fs35', 66)" class="f">f</span> (<span onmouseout="hideTip(event, 'fs5', 67)" onmouseover="showTip(event, 'fs5', 67)" class="i">x</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs19', 68)" onmouseover="showTip(event, 'fs19', 68)" class="t">int</span>) <span class="o">=</span> () <span class="c">// method</span>
   <span class="c">// void F2(int x) =&gt; F(x);</span>
@@ -387,9 +387,9 @@ c# static readonly vs const https://stackoverflow.com/questions/755685/static-re
 <td class="snippet"><pre class="fssnip highlighted"><code lang="cs"><span class="k">public</span> <span class="k">class</span> Employee
 {
   <span class="k">readonly</span> <span class="k">string</span> x=<span class="s">"hello"</span>;
-  <span class="k">public</span> <span class="k">int</span> Foo() <span class="o">=</span><span class="o">&gt;</span> x;
-  <span class="k">public</span> <span class="k">int</span> Z <span class="o">=</span><span class="o">&gt;</span> x;
-  <span class="k">public</span> <span class="k">string</span> Y {get;set;}
+  <span class="k">public</span> <span class="k">string</span> Foo() <span class="o">=</span><span class="o">&gt;</span> x;
+  <span class="k">public</span> <span class="k">string</span> Z <span class="o">=</span><span class="o">&gt;</span> x;
+  <span class="k">public</span> <span class="k">int</span> Y {get;set;}
   <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> Bar() <span class="o">=</span><span class="o">&gt;</span> {};
 }
 <span class="k">public</span> <span class="k">class</span> Foo{}
@@ -407,7 +407,7 @@ c# static readonly vs const https://stackoverflow.com/questions/755685/static-re
   <span class="k">let</span> <span onmouseout="hideTip(event, 'fs38', 74)" onmouseover="showTip(event, 'fs38', 74)" class="i">x</span> <span class="o">=</span> <span class="s">&quot;hello&quot;</span> <span class="c">// field</span>
   <span class="k">member</span> <span onmouseout="hideTip(event, 'fs39', 75)" onmouseover="showTip(event, 'fs39', 75)" class="i">this</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs40', 76)" onmouseover="showTip(event, 'fs40', 76)" class="f">Foo</span>() <span class="o">=</span> <span onmouseout="hideTip(event, 'fs38', 77)" onmouseover="showTip(event, 'fs38', 77)" class="i">x</span>
   <span class="k">member</span> <span onmouseout="hideTip(event, 'fs39', 78)" onmouseover="showTip(event, 'fs39', 78)" class="i">this</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs41', 79)" onmouseover="showTip(event, 'fs41', 79)" class="i">Z</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs38', 80)" onmouseover="showTip(event, 'fs38', 80)" class="i">x</span>
-  <span class="k">member</span> <span class="k">val</span> <span onmouseout="hideTip(event, 'fs42', 81)" onmouseover="showTip(event, 'fs42', 81)" class="v">Y</span> <span class="o">=</span> <span class="k">null</span> <span class="k">with</span> <span class="i">get</span>,<span onmouseout="hideTip(event, 'fs43', 82)" onmouseover="showTip(event, 'fs43', 82)" class="i">set</span>
+  <span class="k">member</span> <span class="k">val</span> <span onmouseout="hideTip(event, 'fs42', 81)" onmouseover="showTip(event, 'fs42', 81)" class="v">Y</span> <span class="o">=</span> <span class="n">0</span> <span class="k">with</span> <span class="i">get</span>,<span onmouseout="hideTip(event, 'fs43', 82)" onmouseover="showTip(event, 'fs43', 82)" class="i">set</span>
   <span class="k">static</span> <span class="k">member</span> <span onmouseout="hideTip(event, 'fs44', 83)" onmouseover="showTip(event, 'fs44', 83)" class="f">Bar</span>() <span class="o">=</span> ()
 <span class="c">// empty class</span>
 <span class="k">type</span> <span onmouseout="hideTip(event, 'fs45', 84)" onmouseover="showTip(event, 'fs45', 84)" class="t">Foo</span>() <span class="o">=</span> <span class="k">class</span> <span class="k">end</span>
