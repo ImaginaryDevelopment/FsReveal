@@ -160,20 +160,29 @@ Target "KeepRunning" (fun _ ->
 //     Branches.push tempDocsDir
 // )
 
+let tempDocsRoot = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
+let tempDocsDir = tempDocsRoot </> gitSubDir
+
 // would be lovely if we check for uncommitted/unpushed changes in the local branch before allowing new releases to be generated and pushed up
 // Git.FileStatus.getChangedFiles should be able to do this check
 Target "ReleaseSlides" (fun _ ->
     if gitOwner = "myGitUser" || gitProjectName = "MyProject" then
         failwith "You need to specify the gitOwner and gitProjectName in build.fsx"
-    let tempDocsRoot = __SOURCE_DIRECTORY__ </> "temp/gh-pages"
-    let tempDocsDir = tempDocsRoot </> gitSubDir
     CleanDir tempDocsRoot
+    printfn "cloning into %s" tempDocsDir
     Repository.cloneSingleBranch "" (gitHome + "/" + gitProjectName + ".git") "gh-pages" tempDocsDir
 
     fullclean tempDocsDir
     CopyRecursive outDir tempDocsDir true |> tracefn "%A"
+    printfn "Staging"
     StageAll tempDocsRoot
     Git.Commit.Commit tempDocsRoot "Update generated slides"
+    printfn "Pushing"
+    Branches.push tempDocsRoot
+)
+Target "Push" (fun _ ->
+    if not <| Directory.Exists tempDocsDir then
+        failwithf "Slides not prepared for release, could not locate %s" tempDocsDir
     Branches.push tempDocsRoot
 )
 
