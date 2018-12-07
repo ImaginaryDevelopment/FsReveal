@@ -141,7 +141,7 @@ module FExamples =
   // readonly static int x = 1;
   let x = 1
   let z () = () // void Z() {}
-  let y () = 1 // int Y() => 1;
+  let y () = 1 // int Y() { return 1;}
   // void F(int x) {}
   let f (x:int) = () // method
   // void F2(int x) => F(x);
@@ -155,9 +155,9 @@ module FExamples =
     public class Employee
     {
       readonly string x="hello";
-      public int Foo() => x;
-      public int Z => x;
-      public string Y {get;set;}
+      public string Foo() => x;
+      public string Z => x;
+      public int Y {get;set;}
       public static void Bar() => {};
     }
     public class Foo{}
@@ -166,7 +166,7 @@ type HelloClass() =
   let x = "hello" // field
   member this.Foo() = x
   member this.Z = x
-  member val Y = null with get,set
+  member val Y = 0 with get,set
   static member Bar() = ()
 // empty class
 type Foo() = class end
