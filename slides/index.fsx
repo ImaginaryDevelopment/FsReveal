@@ -37,8 +37,10 @@ module Syntax =
   let a = 5 // var a = 5;
   let c = 1 + a // var c = 1 + a;
   // public int Twice(int x) => x * 2;
-  let twice x = 2 * x
-  let d = twice a
+  // the () are optional
+  let twice(x) = 2 * x
+  // the () are optional
+  let d = twice(a)
 (**
 fsreveal magic `c` and `d` are evaluated for you
 *)
@@ -92,10 +94,10 @@ module Casting =
   let x = 5 // var x = 5;
   // var y = (obj) x;
   // upcast (always succeeds if it compiles)
-  let y:obj = x :> obj
+  let y = x :> obj
   // downcast when the type isn't inferrable (? mark notes the possibility of failure)
   // var z = (int)y;
-  let z:int = y :?> int
+  let z = y :?> int
   // var a = (obj)x;
   let a:obj = upcast x // when the type is inferrable
   // var b = (int)y;
@@ -137,12 +139,12 @@ module Casting2 =
 *)
 module FExamples =
   // readonly static int x = 1;
-  let x = 1 // static readonly field or perhaps const
+  let x = 1
   let z () = () // void Z() {}
   let y () = 1 // int Y() => 1;
   // void F(int x) {}
   let f (x:int) = () // method
-  // void F2(int x) => f(x);
+  // void F2(int x) => F(x);
   let f2 x = f x // method
 
 (**
@@ -152,9 +154,10 @@ module FExamples =
     [lang=cs]
     public class Employee
     {
-      readonly int x="hello";
+      readonly string x="hello";
       public int Foo() => x;
       public int Z => x;
+      public string Y {get;set;}
       public static void Bar() => {};
     }
     public class Foo{}
@@ -163,6 +166,7 @@ type HelloClass() =
   let x = "hello" // field
   member this.Foo() = x
   member this.Z = x
+  member val Y = null with get,set
   static member Bar() = ()
 // empty class
 type Foo() = class end
