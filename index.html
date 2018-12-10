@@ -106,7 +106,7 @@
 <div class="tip" id="fs58">member ClassImplements.Bark : unit -&gt; string</div>
 <div class="tip" id="fs59">override ClassImplements.Bar : string with set<br /><br />Full name: Index.ClassImplements.Bar</div>
 <div class="tip" id="fs60">property ClassImplements.Bar: string</div>
-<div class="tip" id="fs61">val v : string</div>
+<div class="tip" id="fs61">val value : string</div>
 <div class="tip" id="fs62">type Employee =<br />&#160;&#160;{Name: string;<br />&#160;&#160;&#160;EmployeeId: Guid;<br />&#160;&#160;&#160;Salary: decimal;}<br /><br />Full name: Index.Employee</div>
 <div class="tip" id="fs63">Employee.Name: string</div>
 <div class="tip" id="fs64">Employee.EmployeeId: Guid</div>
@@ -421,10 +421,16 @@ c# static readonly vs const https://stackoverflow.com/questions/755685/static-re
 <span class="l">2: </span>
 <span class="l">3: </span>
 <span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs46', 85)" onmouseover="showTip(event, 'fs46', 85)" class="t">IAmAnInterface</span> <span class="o">=</span>
+  <span class="c">// string Bark();</span>
   <span class="k">abstract</span> <span class="k">member</span> <span onmouseout="hideTip(event, 'fs47', 86)" onmouseover="showTip(event, 'fs47', 86)" class="f">Bark</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs48', 87)" onmouseover="showTip(event, 'fs48', 87)" class="t">unit</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs28', 88)" onmouseover="showTip(event, 'fs28', 88)" class="t">string</span>
+  <span class="c">// string Version { get; }</span>
   <span class="k">abstract</span> <span class="k">member</span> <span onmouseout="hideTip(event, 'fs49', 89)" onmouseover="showTip(event, 'fs49', 89)" class="i">Foo</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs28', 90)" onmouseover="showTip(event, 'fs28', 90)" class="t">string</span> <span class="k">with</span> <span class="i">get</span>
+  <span class="c">// string Bar {get;set;}</span>
   <span class="k">abstract</span> <span class="k">member</span> <span onmouseout="hideTip(event, 'fs50', 91)" onmouseover="showTip(event, 'fs50', 91)" class="i">Bar</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs28', 92)" onmouseover="showTip(event, 'fs28', 92)" class="t">string</span> <span class="k">with</span> <span class="i">get</span>,<span onmouseout="hideTip(event, 'fs43', 93)" onmouseover="showTip(event, 'fs43', 93)" class="i">set</span>
 </code></pre></td>
 </tr>
@@ -471,7 +477,7 @@ c# static readonly vs const https://stackoverflow.com/questions/755685/static-re
     <span class="k">member</span> <span onmouseout="hideTip(event, 'fs52', 109)" onmouseover="showTip(event, 'fs52', 109)" class="i">this</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs57', 110)" onmouseover="showTip(event, 'fs57', 110)" class="f">Bark</span> () <span class="o">=</span> <span onmouseout="hideTip(event, 'fs52', 111)" onmouseover="showTip(event, 'fs52', 111)" class="i">this</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs58', 112)" onmouseover="showTip(event, 'fs58', 112)" class="f">Bark</span>()
     <span class="k">member</span> <span onmouseout="hideTip(event, 'fs52', 113)" onmouseover="showTip(event, 'fs52', 113)" class="i">this</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs59', 114)" onmouseover="showTip(event, 'fs59', 114)" class="i">Bar</span>
       <span class="k">with</span> <span class="i">get</span>() <span class="o">=</span> <span onmouseout="hideTip(event, 'fs52', 115)" onmouseover="showTip(event, 'fs52', 115)" class="i">this</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs60', 116)" onmouseover="showTip(event, 'fs60', 116)" class="i">Bar</span>
-      <span class="k">and</span> <span onmouseout="hideTip(event, 'fs43', 117)" onmouseover="showTip(event, 'fs43', 117)" class="i">set</span> <span onmouseout="hideTip(event, 'fs61', 118)" onmouseover="showTip(event, 'fs61', 118)" class="i">v</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs52', 119)" onmouseover="showTip(event, 'fs52', 119)" class="i">this</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs60', 120)" onmouseover="showTip(event, 'fs60', 120)" class="i">Bar</span> <span class="o">&lt;-</span> <span onmouseout="hideTip(event, 'fs61', 121)" onmouseover="showTip(event, 'fs61', 121)" class="i">v</span>
+      <span class="k">and</span> <span onmouseout="hideTip(event, 'fs43', 117)" onmouseover="showTip(event, 'fs43', 117)" class="i">set</span> <span onmouseout="hideTip(event, 'fs61', 118)" onmouseover="showTip(event, 'fs61', 118)" class="i">value</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs52', 119)" onmouseover="showTip(event, 'fs52', 119)" class="i">this</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs60', 120)" onmouseover="showTip(event, 'fs60', 120)" class="i">Bar</span> <span class="o">&lt;-</span> <span onmouseout="hideTip(event, 'fs61', 121)" onmouseover="showTip(event, 'fs61', 121)" class="i">value</span>
 </code></pre></td>
 </tr>
 </table>
