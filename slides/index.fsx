@@ -119,7 +119,7 @@ module Casting2 =
   let x:obj = box 1
   // in C#5(maybe even 6) you can't conditionally define a variable
   // var a2 = x as int?;
-  // ^ and now a2 is in scope for the rest of the method
+  // due to the line above now a2 is in scope for the rest of the method
   // x gives a warning here, we haven't covered all possibilities
   // nothing like that in C# besides default case requirement of switches
   let result =
@@ -147,7 +147,7 @@ module Casting3 =
   | :? string as str when str.Length > 0 -> printfn "string value: %s" str
   // if(a3 == null && x != null) ...
   // also prints <null> for null values
-  | x -> printfn "nonNull value is %O" x // calls toString if it is not null
+  | x -> printfn "value is %O" x // calls toString if it is not null
 
 (**
 ***
