@@ -59,7 +59,9 @@ module Assignment =
   let x = 5 // not mutable
   let mutable y = 5
   // parens are just to help visualize it for new learners
-  let z = (x = 6)
+  let z = (5 = 6)
+  // same as above since x is immutable and is 5
+  let z2 = (x = 6)
   y <- y + 1
 
 (**
@@ -73,8 +75,8 @@ module Assignment =
 #### if
 ' consider touching on automatic generalization here
 *)
-// string F1(int x) => x < 5 ? "less than" : "not less than";
-let f1 x = if x < 5 then "less than" else "not less than"
+// string F1(int x) => x < 5 ? "<" : ">=";
+let f1 x = if x < 5 then "<" else ">="
 // string F2(int lower, int x, int upper) =>
 //    x < lower ? "less than" : x > upper ? "greater than" : "between";
 let f2 lower x upper =
@@ -95,7 +97,7 @@ module Casting =
   // var y = (obj) x;
   // upcast (always succeeds if it compiles)
   let y = x :> obj
-  // downcast when the type isn't inferrable (? mark notes the possibility of failure)
+  // downcast (? mark notes the possibility of failure)
   // var z = (int)y;
   let z = y :?> int
   // var a = (obj)x;
@@ -112,24 +114,40 @@ module Casting =
 *)
 
 module Casting2 =
-  // box is a shorthand for upcast to object
-  let x:obj = box 2
+  // box is shorthand for upcast to object
+  // var x = (object) 1;
+  let x:obj = box 1
   // in C#5(maybe even 6) you can't conditionally define a variable
   // var a2 = x as int?;
-  // if(a2 != null) Console.WriteLine("int value:" + a2);
-  // else Console.WriteLine(x.ToString());
+  // ^ and now a2 is in scope for the rest of the method
+  // x gives a warning here, we haven't covered all possibilities
+  // nothing like that in C# besides default case requirement of switches
   let result =
     match x with
-    | :? int as a -> sprintf "int value: %i" a
-    // calls ToString if it is not null, a tuple, record or union
-    | null -> sprintf "non-int null value is %A" x // would print <null> for null values
-    // conditional matches
-    | :? string as str when str.Length > 0 -> sprintf "string value: %s" str
-    // also prints <null> for null values
-    | x -> sprintf "nonNull value is %O" x // calls toString if it is not null
     // advanced/arguably misusable power:
     // in F# we don't need to use a separate variable name for the casted variable
+    // if(a2 != null) Console.WriteLine("int value:" + a2);
+    | :? int as a -> sprintf "int value: %i" a
+    // calls ToString if it is not null, a tuple, record or union
+    // if(a1 == null) Console.WriteLine("non-int null value is "+a1);
+    | null -> sprintf "non-int null value is %A" x // prints <null> for null values
 (*** include-value: Casting2.result ***)
+
+(**
+---
+
+#### Casting 3
+*)
+module Casting3 =
+  // var x = (object)"1";
+  let x:obj = box "1"
+  // conditional matches
+  match x with
+  // var a3 =  x as string; if(a3 != null && a3.Length > 0) ...
+  | :? string as str when str.Length > 0 -> printfn "string value: %s" str
+  // if(a3 == null && x != null) ...
+  // also prints <null> for null values
+  | x -> printfn "nonNull value is %O" x // calls toString if it is not null
 
 (**
 ***
@@ -137,6 +155,7 @@ module Casting2 =
 #### fields vs methods
 ' c# static readonly vs const https://stackoverflow.com/questions/755685/static-readonly-vs-const
 *)
+// public static class FExamples
 module FExamples =
   // readonly static int x = 1;
   let x = 1
@@ -241,16 +260,18 @@ let e2 = {e with Name="John Doe"; EmployeeId = Guid.NewGuid()}
 *)
 module SequenceExamples =
   // new is not required in F#
-  // you will may get a warning though if you don't use new on IDisposables
+  // you will get a warning on IDisposables
   let a = System.Collections.Generic.List<int>()
-  // same as the line above (using build-in f# aliases)
+  // same as the line above (using built-in f# aliases)
   let b = ResizeArray<int>()
   let literalArray = [| |] // also Array.empty
-  // var arrayOf1To10 = Enumerable.Rangea(1, 10).ToArray();
+  // var arrayOf1To10 = Enumerable.Range(1, 10).ToArray();
   let arrayOf1To10 = [| 1..10 |]
   // F# list type
-  let literalList = [] // F# version is immutable
   let listOf1To10 = [ 1..10 ]
+
+  // Microsoft.FSharp.Collections.ListModule.Empty<int>()
+  let literalList = [] // F# version is immutable
 
 (**
 ---
@@ -271,7 +292,9 @@ module NotLinq =
   let items = [123;456;10;999;9]
   // var doubled = items.Select(x => x * 2);
   let doubled = items |> Seq.map (fun x -> x * 2)
-  // public IEnumerable<int> Evens(IEnumerable<int> items) => items.Where(x => x % 2 == 0);
+  // this is why C# can't have nice things. look how long this is.
+  // public IEnumerable<int> Evens(IEnumerable<int> items) =>
+  //     items.Where(x => x % 2 == 0);
   let evens items = items |> Seq.filter (fun x -> x % 2 = 0)
 
 
