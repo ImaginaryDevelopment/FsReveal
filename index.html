@@ -331,7 +331,7 @@ consider touching on automatic generalization here<br/>
   <span class="k">let</span> <span onmouseout="hideTip(event, 'fs24', 44)" onmouseover="showTip(event, 'fs24', 44)" class="i">x</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs18', 45)" onmouseover="showTip(event, 'fs18', 45)" class="t">obj</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs25', 46)" onmouseover="showTip(event, 'fs25', 46)" class="f">box</span> <span class="n">1</span>
   <span class="c">// in C#5(maybe even 6) you can&#39;t conditionally define a variable</span>
   <span class="c">// var a2 = x as int?;</span>
-  <span class="c">// ^ and now a2 is in scope for the rest of the method</span>
+  <span class="c">// due to the line above now a2 is in scope for the rest of the method</span>
   <span class="c">// x gives a warning here, we haven&#39;t covered all possibilities</span>
   <span class="c">// nothing like that in C# besides default case requirement of switches</span>
   <span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 47)" onmouseover="showTip(event, 'fs26', 47)" class="i">result</span> <span class="o">=</span>
@@ -370,7 +370,7 @@ consider touching on automatic generalization here<br/>
   | <span class="o">:?</span> <span onmouseout="hideTip(event, 'fs30', 59)" onmouseover="showTip(event, 'fs30', 59)" class="t">string</span> <span class="k">as</span> <span onmouseout="hideTip(event, 'fs31', 60)" onmouseover="showTip(event, 'fs31', 60)" class="i">str</span> <span class="k">when</span> <span onmouseout="hideTip(event, 'fs31', 61)" onmouseover="showTip(event, 'fs31', 61)" class="i">str</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 62)" onmouseover="showTip(event, 'fs32', 62)" class="i">Length</span> <span class="o">&gt;</span> <span class="n">0</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs33', 63)" onmouseover="showTip(event, 'fs33', 63)" class="f">printfn</span> <span class="s">&quot;string value: </span><span class="pf">%s</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs31', 64)" onmouseover="showTip(event, 'fs31', 64)" class="i">str</span>
   <span class="c">// if(a3 == null &amp;&amp; x != null) ...</span>
   <span class="c">// also prints &lt;null&gt; for null values</span>
-  | <span onmouseout="hideTip(event, 'fs34', 65)" onmouseover="showTip(event, 'fs34', 65)" class="i">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs33', 66)" onmouseover="showTip(event, 'fs33', 66)" class="f">printfn</span> <span class="s">&quot;nonNull value is </span><span class="pf">%O</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs34', 67)" onmouseover="showTip(event, 'fs34', 67)" class="i">x</span> <span class="c">// calls toString if it is not null</span>
+  | <span onmouseout="hideTip(event, 'fs34', 65)" onmouseover="showTip(event, 'fs34', 65)" class="i">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs33', 66)" onmouseover="showTip(event, 'fs33', 66)" class="f">printfn</span> <span class="s">&quot;value is </span><span class="pf">%O</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs34', 67)" onmouseover="showTip(event, 'fs34', 67)" class="i">x</span> <span class="c">// calls toString if it is not null</span>
 </code></pre></td>
 </tr>
 </table>
