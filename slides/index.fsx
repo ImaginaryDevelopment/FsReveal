@@ -175,8 +175,11 @@ type Foo() = class end
 #### Interfaces
 *)
 type IAmAnInterface =
+  // string Bark();
   abstract member Bark : unit -> string
+  // string Version { get; }
   abstract member Foo : string with get
+  // string Bar {get;set;}
   abstract member Bar : string with get,set
 (**
 ---
@@ -200,7 +203,7 @@ type ClassImplements () =
     member this.Bark () = this.Bark()
     member this.Bar
       with get() = this.Bar
-      and set v = this.Bar <- v
+      and set value = this.Bar <- value
 
 (**
 ---
